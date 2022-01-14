@@ -1,0 +1,96 @@
+<script>
+      ///////////////////////////////////////////
+  window.setInterval('refresh()', 1000); 	
+    // Call a function every 10000 milliseconds 
+    // (OR 10 seconds).
+
+    // Refresh or reload page.
+    function refresh() {
+        window .location.reload();
+    }
+////////////////////////////////////////////
+</script>
+<center>
+<h1>Bloc A</h1><hr></center>
+<div class="row">
+    <div class="col">
+         {{#if salleA1}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+      
+<div class="row">
+        <p  id="Salle A1">Salle A1 &ensp;&ensp;</p>
+        
+    </div></div></div>
+    <div class="col">
+                 {{#if salleA2}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+            <div class="row">
+        <p id="Salle A2">Salle A2 &ensp;&ensp;</p>
+        
+    </div></div></div>
+</div>
+<center>
+<h1>Bloc B</h1><hr></center>
+
+<div class="row">
+    <div class="col ">
+                         {{#if salleB1}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p  id="Salle B1">Salle B1</p>
+    </div></div></div>
+    <div class="col">
+                         {{#if salleB2}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p  id="Salle B2">Salle B2</p>
+    </div></div>
+</div>
+    <div class="col">
+                        {{#if salleB3}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p  id="Salle B3">Salle B3</p>
+    </div></div>
+</div>
+     <div class="col">
+                        {{#if salleB8}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p  id="Salle B8">Salle B8</p>
+    </div></div>
+</div>
+     <div class="col">
+                         {{#if salleB11}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p  id="Salle B11">Salle B11</p>
+    </div></div>
+</div>
+</div>
+
+<center>
+<h1>Bloc C</h1><hr></center>
+
+<div class="row">
+    <div class="col">
+                      {{#if salleC1}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p id="Salle C1">Salle C1</p>
+    </div></div></div>
+   
+    <div class="col">
+                       {{#if salleC2}}   <div class="list-group-item list-group-item-danger"> {{else}}    <div class="list-group-item list-group-item-success"> {{/if}}
+
+        <div class="row">
+        <p id="Salle C2">Salle C2</p>
+    </div></div></div>
+    
+</div>
+<style>
+    p{
+        font-size:20px;
+    }
+    p {text-align: center;}
+</style>
+

@@ -1,0 +1,173 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0", 
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],    
+    "paths": {
+      "/salle/salles": {
+          "get": {
+            "tags": ["Salles"],
+            "summary": "Get all salles in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "/salle"
+                }
+              }
+            }
+          }
+        },
+        "/bloc":{
+          "post": {
+            "tags": ["Bloc"],
+            "description": "Create new bloc in system",
+            "parameters": [
+              {
+                "name": "salle",
+                "in": "body",
+                "description": "User that we want to create",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "New user is created",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        },
+        "/bloc/blocs": {
+          "get": {
+            "tags": ["Bloc"],
+            "summary": "Get all Blocs in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "/bloc"
+                }
+              }
+            }
+          }
+        },
+        "/bloc/delete1/{_id}": {
+          "parameters": [
+            {
+              "name": "_id",
+              "in": "path",
+              "required": true,
+              "description": "ID of bloc that we want to find",
+              "type": "string"
+            }
+          ],
+            "delete": {
+              "summary": "Delete bloc with given ID",
+              "tags": ["Bloc"],
+              "responses": {
+                "200": {
+                  "description": "bloc is deleted",
+                  "schema": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              }
+            }
+  },
+        "/salle": {
+          "post": {
+            "tags": ["Salles"],
+            "description": "Create new salle in system",
+            "parameters": [
+              {
+                "name": "salle",
+                "in": "body",
+                "description": "User that we want to create",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            ],
+            "produces": ["application/json"],
+            "responses": {
+              "200": {
+                "description": "New user is created",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        },
+        "/salle/delete1/{_id}": {
+            "parameters": [
+              {
+                "name": "_id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to find",
+                "type": "string"
+              }
+            ],
+              "delete": {
+                "summary": "Delete salle with given ID",
+                "tags": ["Salles"],
+                "responses": {
+                  "200": {
+                    "description": "salle is deleted",
+                    "schema": {
+                      "$ref": "#/definitions/User"
+                    }
+                  }
+                }
+              }
+    },
+    "/salle":{
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": ["Salles"],
+        "parameters": [
+          {
+            "name": "salle",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+      }}
+  

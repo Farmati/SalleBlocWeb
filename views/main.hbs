@@ -1,0 +1,252 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"
+  integrity="sha512-uLlukEfSLB7gWRBvzpDnLGvzNUluF19IDEdUoyGAtaO0MVSBsQ+g3qhLRL3GTVoEzKpc24rVT6X1Pr5fmsShBg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+  </script>
+<script>
+
+  var socket = io();
+  var send = function () {
+    socket.emit('test', "txt");
+  }
+  var receive = function (salle, date, crenaux, data) {
+    ///////////////
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = salle;
+    cell2.innerHTML = date;
+    cell3.innerHTML = crenaux;
+  }
+
+  var chartUpdate = function (data, iddSalle, iddBloc, iddOccupation, iddEnsajiste) {
+    var idEnsaj = document.getElementById("idEnsaj");
+    idEnsaj.innerHTML = iddEnsajiste + "Ensajistes";
+    var idSalle = document.getElementById("idSalle");
+    idSalle.innerHTML = iddSalle + " Salles";
+    var idBloc = document.getElementById("idBloc");
+    idBloc.innerHTML = iddBloc + " Blocs";
+    var idOccupation = document.getElementById("idOccupation");
+    idOccupation.innerHTML = iddOccupation;
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        scales: {
+          x: {
+            title: {
+              text: "Les Blocs", color: 'red',
+              display: true
+            }
+          },
+          y: {
+            title: {
+              text: "Les Salles", color: 'blue',
+              display: true
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+            position: 'bottom',
+            labels: {
+              fontColor: "#000080",
+            }
+          },
+          title: {
+            display: true,
+            text: 'Salle Par Bloc Chart'
+          },
+
+
+        }
+      }
+    };
+
+    var myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+
+    );
+
+  }
+  socket.on('test', receive);
+  socket.on('display', chartUpdate);
+
+</script>
+<center>
+  <div class="container">
+    <img
+      src="data:image/png;base64,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"
+      alt="Italian Trulli">
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="card text-white bg-info   mb-3" style="max-width: 18rem;">
+          <div class="card-header">Ensajistes</div>
+          <div class="card-body">
+            <h5 class="card-title"> <a class="navbar-brand" href="/ensaj/list"><i class="fa fa-graduation-cap"></i>
+                Ensajiste</a></h5>
+            <p class="card-text" id="idEnsaj"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+          <div class="card-header">Salles</div>
+          <div class="card-body ">
+            <h5 class="card-title"> <a class="navbar-brand" href="/salle/listSalle"><i class="fa fa-home"></i>
+                Salles</a></h5>
+            <p class="card-text" id="idSalle"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-white bg-danger  mb-3" style="max-width: 18rem;">
+          <div class="card-header">Bloc</div>
+          <div class="card-body ">
+            <h5 class="card-title"> <a class="navbar-brand" href="/bloc/listBloc"><i class="fa fa-university"></i>
+                Bloc</a></h5>
+            <p class="card-text" id="idBloc"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-white bg-warning  mb-3" style="max-width: 18rem;">
+          <div class="card-header">Occupation</div>
+          <div class="card-body">
+            <h5 class="card-title"> <a class="navbar-brand" href="/occupation"><i class="fa fa-plus"></i>occupation</a>
+            </h5>
+            <p class="card-text" id="idOccupation"></p>
+            <p class="card-text">Occupations</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</center>
+<br><br>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Salle</th>
+      <th scope="col">Crenaux</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody id="myTable"></tbody>
+</table>
+<div class="chart-container">
+  <canvas id="myChart" style="height:70px; width:150px"></canvas>
+</div>
+
+{{!-- GRAPHE d'OCCUPATION hidden--}}
+<div class="form-group">
+  <label for="salle">Date : </label>
+  <select class="form-control" id="date" name="date">
+    {{#each dates}}
+    <option name={{this}} value={{this}}>{{this}}</option>
+    {{/each}}
+  </select>
+</div>
+<div id="canvas"></div>
+{{!-- <canvas id="myChartt" name="myChartt" width="1600" height="900"></canvas> --}}
+<p id="p" hidden>{{tab}}</p>
+
+</div>
+<script>
+  //////////////////////////////:jquery////////////////////////////////////
+  $(document).ready(function () {
+    $("#date").change(function () {
+      var str = "";
+      $("#myChartt").remove();
+      // var canvas = $('#myChartt');
+      //var context = canvas[0].getContext('2d');
+
+      //context.clearRect(0, 0, canvas.width(), canvas.height());
+      var newCanvas = $('<canvas/>', {
+        'class': 'radHuh',
+        id: 'myChartt'
+      }).prop({
+        width: 1600,
+        height: 900
+      });
+      $('#canvas').append(newCanvas);
+      
+
+      $("select option:selected").each(function () {
+        str = $(this).text();
+      });
+      /////////////////////////
+      $.post("/post",
+        {
+          d: str,
+          designation: "Professional gamer"
+        },
+        function (data, status) {
+          //  alert(data.tab)
+          upd();
+          function upd() {
+            //////////////////////////////////////////////////
+            var t = document.getElementById('p').innerHTML;
+            var data2 = data.tab;
+            //////////////////////////////////////////////CHART JS ////////////////////////////////
+            // Our labels along the x-axis
+            var years = ["Salle A1", "Salle A2", "Salle B1", "Salle B2", "Salle B3", "Salle B8", "Salle B11", "Salle C1", "Salle C2"];
+            // For drawing the lines
+            var africa = data2;
+
+            var ctx = document.getElementById("myChartt");
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: years,
+                datasets: [
+                  {
+                    data: africa,
+                    label: "Occupation",
+                    backgroundColor: [
+                      'rgba(201, 203, 207, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(255, 205, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderColor: [
+                      'rgba(201, 203, 207)',
+                      'rgba(54, 162, 235)',
+                      'rgba(255, 99, 132)',
+                      'rgba(255, 159, 64)',
+                      'rgba(255, 205, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                    ],
+                    fill: false
+                  }
+                ]
+              },
+              options: {
+                indexAxis: 'y',
+              }
+            });
+          }
+
+        });
+      //////////////////////////// //////////////////////////// ////////////////////////////
+    });
+  });
+
+  /////////////////////////part 2
+
+
+
+</script>

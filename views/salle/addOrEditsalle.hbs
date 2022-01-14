@@ -1,0 +1,38 @@
+
+<div class="row">
+        <div class="col-md-8 offset-md-3" style="background-color: #fff;margin-top: 25px;padding:20px;">
+<h3>{{viewTitle}}</h3>
+
+<form action="/salle" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{salle._id}}">
+    <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Name" value="{{salle.name}}">
+        <div class="text-danger">
+            {{salle.fullNameError}}</div>
+    </div>
+     <div class="form-group">
+        <label class="form-label">Bloc</label>
+        <select class="form-select" name="bloc" id="bloc">
+            <option selected value="{{salle.bloc}}">Choose...</option>
+              {{#each blocs}}
+            <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+    </div>
+     <div class="form-group">
+        <label class="form-label">Etat</label>
+        <select class="form-select" name="etat" id="etat">
+            <option selected value="{{salle.etat}}">Choose...</option>
+            <option value="vide">Vide</option>
+            <option value="occupee">Occupée</option>  
+        </select>
+    </div>
+   
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/salle/listsalle"><i class="fa fa-list-alt"></i> View All</a>
+    </div>
+</form>
+</div></div>
